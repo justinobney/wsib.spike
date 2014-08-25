@@ -33,6 +33,7 @@ server.use(express.static(__dirname + '/build'));
 var base = { base: './src/app/' };
 
 var vendorJS = [
+    './src/_vendor/jquery/dist/jquery.min.js',
     './src/_vendor/angular/angular.min.js',
     './src/_vendor/angular-ui-router/release/angular-ui-router.min.js'
 ];
@@ -79,7 +80,8 @@ gulp.task('js', function() {
         .pipe(gulp.dest('./build'))
         .pipe(refresh(lrserver));
 
-    gulp.src('./src/layout_static.html').pipe(gulp.dest('./build'))
+    gulp.src('./src/layout_static.html')
+        .pipe(gulp.dest('./build'))
 });
 
 // templatify
@@ -100,11 +102,6 @@ gulp.task('move', function () {
     gulp
         .src(['./src/css/**/*.*'])
         .pipe(gulp.dest('./build/css'));
-
-    gulp
-        .src(['./src/ionicons/**/*.*'])
-        .pipe(gulp.dest('./build/css/ionicons'));
-
 });
 
 gulp.task('serve', function() {
@@ -122,6 +119,7 @@ gulp.task('watch', function () {
     gulp.watch([
             './src/partials/**/*.js',
             './src/**/*.html',
+            './src/**/*.css',
             './src/app/**/*.js'
     ], base, function () {
         gulp.run('build');

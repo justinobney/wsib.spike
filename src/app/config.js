@@ -14,8 +14,7 @@ angular.module('wsib.spike')
             })
             .state('layout1.home', {
                 url: '/',
-                //templateUrl: '/partials/home.tmpl.html'
-                template: '<h1>Make template</h1>'
+                templateUrl: '/partials/home.tmpl.html'
             });
 
         $urlRouterProvider.otherwise('/');

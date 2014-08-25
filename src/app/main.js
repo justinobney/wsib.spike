@@ -1,5 +1,5 @@
 angular
-    .module('wsib.spike')
-    .run(function($rootScope, $state) {
-        
-    });
+  .module('wsib.spike')
+  .run(function($rootScope, $state) {
+    
+  });

@@ -1,0 +1,21 @@
+[wsib-layout] {
+    overflow: hidden;
+}
+
+.panel__content {
+    overflow-y: auto;
+}
+
+.layout__columns {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.layout__columnswrap {
+    display: table-row;
+}
+
+.layout__column {
+    display: table-cell;
+}

@@ -1,13 +1,35 @@
-<!-- content wrapper to define fullpage or container -->
-<section>
-    <aside>
+<panel>
+  <header>Main Header</header>
+
+  <content>
+    <columns>
+
+      <column width="200">
+        <header>
+          Left Header
+        </header>
+        <content>
+          Left Content
+        </content>
+        <footer></footer>
+      </column>
+
+      <column>
         <header>Header</header>
-        Content
-        <footer>Footer</footer>
-    </aside>
-    <section>
-        <header>Main header</header>
-        <div ui-view></div>
-    </section>
-</section>
-<!-- /wrapper -->
+        <content>
+          Main Content
+        </content>
+      </column>
+
+      <column width="200">
+        <content>
+          Left Content
+        </content>
+      </column>
+
+    </columns>
+  </content>
+  
+  <footer>Footer</footer>
+</panel>
+<!-- <div ui-view></div> -->
