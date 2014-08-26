@@ -34,6 +34,7 @@ var base = { base: './src/app/' };
 
 var vendorJS = [
     './src/_vendor/jquery/dist/jquery.min.js',
+    './src/_vendor/lodash/dist/lodash.js',
     './src/_vendor/angular/angular.min.js',
     './src/_vendor/angular-ui-router/release/angular-ui-router.min.js'
 ];

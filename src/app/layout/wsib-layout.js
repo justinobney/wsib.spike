@@ -13,109 +13,45 @@ angular
     }
   })
 
-  .directive('panel', function panel(){
+  .directive('panel', function panel(PanelService){
     return {
-      restrict: 'E',
-      transclude: true,
-      replace: true,
+      restrict: 'A',
       priority: 950,
-      template: '<div class="layout__panel" ng-transclude></div>',
-      link: function(scope, iElement, iAttrs){
-        var parent = iElement.parent();
+      compile: function(iElement, iAttrs){
+        PanelService.addPanel(iElement);
+        return Function.prototype;
+      }
+    }
+  })
+
+  .service('PanelService', function(){
+    var panels = [];
+    
+    this.addPanel = function(element){
+      panels.push(element);
+      processPanels();
+    };
+
+    var processPanels = _.debounce(function(){
+      var panel = panels.shift();
+      while(panel){
+        var parent = panel.parent();
         var parentHeight = parent.outerHeight();
         var parentWidth = parent.width();
 
-        iElement.height(parentHeight);
-        iElement.width(parentWidth);
+        panel.height(parentHeight);
 
-        var header = iElement.find('>.panel__header');
-        var content = iElement.find('>.panel__content');
-        var footer = iElement.find('>.panel__footer');
+        var header = panel.find('>.layout__panel--header');
+        var content = panel.find('>.layout__panel--content');
+        var footer = panel.find('>.layout__panel--footer');
 
-        content.height(parentHeight - header.outerHeight() - footer.outerHeight());
-        return Function.prototype;
+        var maxHeight = parentHeight - header.outerHeight() - footer.outerHeight();
+        content.height(maxHeight);
+        content.find('>.layout__columns').height(maxHeight);
+        
+        panel = panels.shift();
       }
-    }
-  })
-
-  .directive('header', function header(){
-    return {
-      restrict: 'E',
-      transclude: true,
-      replace: true,
-      template: '<div class="panel__header" ng-transclude></div>',
-      link: function(scope, iElement, iAttrs){
-        return Function.prototype;
-      }
-    }
-  })
-
-  .directive('content', function content(){
-    return {
-      restrict: 'E',
-      transclude: true,
-      replace: true,
-      priority: 951,
-      template: '<div class="panel__content" ng-transclude></div>',
-      link: function(scope, iElement, iAttrs){
-        return Function.prototype;
-      }
-    }
-  })
-
-  .directive('footer', function footer(){
-    return {
-      restrict: 'E',
-      transclude: true,
-      replace: true,
-      priority: 951,
-      template: '<div class="panel__footer" ng-transclude></div>',
-      link: function(scope, iElement, iAttrs){
-        return Function.prototype;
-      }
-    }
-  })
-
-  .directive('columns', function columns(){
-    return {
-      restrict: 'E',
-      transclude: true,
-      replace: true,
-      priority: 900,
-      template: '<div class="layout__columns"><div class="layout__columnswrap" ng-transclude></div></div>',
-      link: function(scope, iElement, iAttrs){
-        return Function.prototype;
-      }
-    }
-  })
-
-  .directive('column', function column($timeout){
-    return {
-      restrict: 'E',
-      transclude: true,
-      replace: true,
-      priority: 951,
-      template: '<div class="layout__column" ng-transclude></div>',
-      link: function(scope, iElement, iAttrs){
-        if(iAttrs.width){
-          iElement.width(iAttrs.width);
-        }
-
-        $timeout(function(){
-          var parent = iElement.parent();
-          var parentHeight = parent.outerHeight();
-
-          iElement.height(parentHeight);
-
-          var header = iElement.find('>.panel__header');
-          var content = iElement.find('>.panel__content');
-          var footer = iElement.find('>.panel__footer');
-
-          content.height(parentHeight - header.outerHeight() - footer.outerHeight());
-        })
-        return Function.prototype;
-      }
-    }
+    }, 10);
   })
 
   .directive('div', function div(){
@@ -124,6 +60,18 @@ angular
       link: function(scope, iElement, iAttrs){
         iElement.css('background-color', Please.make_color())
         return Function.prototype;
+      }
+    }
+  })
+
+  .directive('addContent', function div(){
+    return {
+      restrict: 'A',
+      link: function(scope, iElement, iAttrs){
+        var count = 50;
+        while(count--){
+          iElement.append('<p>this is a tag</p>')
+        }
       }
     }
   })

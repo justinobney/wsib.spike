@@ -2,8 +2,21 @@
     overflow: hidden;
 }
 
-.panel__content {
-    overflow-y: auto;
+.layout__panel:before,
+.layout__panel:after,
+.layout__panel--header:before,
+.layout__panel--header:after,
+.layout__panel--content:before,
+.layout__panel--content:after,
+.layout__panel--footer:before,
+.layout__panel--footer:after {
+  content: " ";
+  display: table;
+}
+
+.layout__column {
+    display: table-cell;
+    border-right: solid 1px #fff;
 }
 
 .layout__columns {
@@ -12,10 +25,10 @@
     height: 100%;
 }
 
-.layout__columnswrap {
-    display: table-row;
+.tools {
+  width: 200px;
 }
 
-.layout__column {
-    display: table-cell;
+.layout__panel--content {
+    overflow-y: scroll;
 }

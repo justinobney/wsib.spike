@@ -1,35 +1,18 @@
-<panel>
-  <header>Main Header</header>
+<section class="layout__panel" panel>
+  <header class="layout__panel--header">
+    <h1>Main Header</h1>
+  </header>
 
-  <content>
-    <columns>
+  <div class="layout__panel--content">
+    <div class="layout__columns">
+      <div class="layout__column">Column 1</div>
+      <div class="layout__column">Column 2</div>
+      <div class="layout__column tools">Column 3</div>
+    </div>
+  </div>
 
-      <column width="200">
-        <header>
-          Left Header
-        </header>
-        <content>
-          Left Content
-        </content>
-        <footer></footer>
-      </column>
-
-      <column>
-        <header>Header</header>
-        <content>
-          Main Content
-        </content>
-      </column>
-
-      <column width="200">
-        <content>
-          Left Content
-        </content>
-      </column>
-
-    </columns>
-  </content>
-  
-  <footer>Footer</footer>
-</panel>
+  <footer class="layout__panel--footer">
+    <h2>Footer</h2>
+  </footer>
+</section>
 <!-- <div ui-view></div> -->
