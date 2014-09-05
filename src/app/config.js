@@ -18,7 +18,7 @@ angular.module('wsib.spike')
             template: 'Header'
           },
           'left@': {
-            template: '<div class="container-fluid"><div class="row"><div class="col-xs-12"><div ph-txt="20p"></div></div></div></div>'
+            template: '<div class="panel panel-info"><div class="panel-heading">Panel heading</div><ul class="list-group"><li ng-repeat="item in [1,2,3,4,5,6,7,8,9,10]" class="list-group-item">Cras justo odio</li></ul></div><div class="panel panel-info"><div class="panel-heading">Panel heading</div><ul class="list-group"><li ng-repeat="item in [1,2,3,4,5,6,7,8,9,10]" class="list-group-item">Cras justo odio</li></ul></div>'
           },
           'main@': {
             templateUrl: '/partials/home.main.html'
