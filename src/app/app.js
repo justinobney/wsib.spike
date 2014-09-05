@@ -8,8 +8,7 @@ angular
     .controller('AppCtrl', function (layoutManager) {
       var vm = this;
 
-      vm.toggleLeft = function(){
-        layoutManager.state.left.closed = ! layoutManager.state.left.closed;
-        layoutManager.calculateLayout();
+      vm.toggleSidebar = function(side){
+        layoutManager.toggle(side);
       }
     })

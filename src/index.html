@@ -22,9 +22,9 @@
     <div>
         <div id="layout-header" ui-view="header"></div>
         <div id="layout-content" ng-controller="LayoutController as layout">
-            <div id="layout-content-left" ui-view="left" ng-class="layout.state.left"></div>
+            <div id="layout-content-left1" ui-view="left1" ng-class="layout.state.left1"></div>
+            <div id="layout-content-left2" ui-view="left2" ng-class="layout.state.left2"></div>
             <div id="layout-content-main" ui-view="main" ng-class="layout.state.main"></div>
-            <div id="layout-content-right" ui-view="right" ng-class="layout.state.right"></div>
         </div>
         <div id="layout-footer" ui-view="footer"></div>
     </div>

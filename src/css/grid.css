@@ -10,21 +10,21 @@ body{
     height: 50px;
 }
 
-#layout-content-left,
+#layout-content-left1,
 #layout-content-main,
-#layout-content-right {
+#layout-content-left2 {
   position: absolute;
   overflow-y: auto;
   border: solid 1px #c2c2c2;
 }
 
-#layout-content-left,
-#layout-content-right {
-  width: 200px;
+#layout-content-left1,
+#layout-content-left2 {
+  width: 250px;
 }
 
-#layout-content-left.closed,
-#layout-content-right.closed {
+#layout-content-left1.closed,
+#layout-content-left2.closed {
   width: 0;
   overflow: hidden !important;
 }
