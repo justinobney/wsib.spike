@@ -14,7 +14,7 @@ var gulp = require('gulp'),
     livereload = require('connect-livereload'),
     pkg = require('./package.json'),
     livereloadport = 35729,
-    serverport = 8080
+    serverport = 8002
     ngAppBase = pkg.name;
 
 //We only configure the server here and start it only when running the watch task
@@ -41,7 +41,7 @@ var vendorJS = [
 
 var appJS = [
     './src/buid_head.js',
-    './temp/**/**/*.tmpl.js',
+    './temp/**/**/*.js',
     './src/app/app.js',
     './src/app/**/*-module.js',
     './src/app/**/*.js',
@@ -71,7 +71,6 @@ gulp.task('js', function() {
     var appStream = gulp.src(appJS)
         .pipe(concat('app.js'))
         .pipe(ngAnnotate())
-        //.pipe(uglify())
         .pipe(gulp.dest('./build/app'));
 
 
@@ -87,7 +86,10 @@ gulp.task('js', function() {
 
 // templatify
 gulp.task('templatify', function () {
-    gulp.src("./src/**/*.tmpl.html")
+    gulp.src([
+             "./src/**/*.html",
+             "!./src/index.html"
+             ])
     .pipe(ngHtml2Js({
         moduleName: ngAppBase + '.templates',
         prefix: "/",

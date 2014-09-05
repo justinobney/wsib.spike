@@ -1,34 +1,36 @@
-[wsib-layout] {
-    overflow: hidden;
+#layout-header {
+    height: 50px;
 }
 
-.layout__panel:before,
-.layout__panel:after,
-.layout__panel--header:before,
-.layout__panel--header:after,
-.layout__panel--content:before,
-.layout__panel--content:after,
-.layout__panel--footer:before,
-.layout__panel--footer:after {
-  content: " ";
-  display: table;
+#layout-footer {
+    height: 50px;
 }
 
-.layout__column {
-    display: table-cell;
-    border-right: solid 1px #fff;
+#layout-content-left,
+#layout-content-main,
+#layout-content-right {
+  position: absolute;
+  overflow-y: auto;
+  border: solid 1px #c2c2c2;
 }
 
-.layout__columns {
-    display: table;
-    width: 100%;
-    height: 100%;
-}
-
-.tools {
+#layout-content-left,
+#layout-content-right {
   width: 200px;
 }
 
-.layout__panel--content {
+.wsib-panel {
+    position: relative;
+    overflow: hidden;
+}
+.wsib-panel-header {
+    overflow: auto;
+    border-bottom: solid 1px #c2c2c2;
+}
+.wsib-panel.panel-scrolled .wsib-panel-header {
+    border-bottom-color: #FFF;
+    box-shadow: 0 0 5px;
+}
+.wsib-panel-content {
     overflow-y: scroll;
 }

@@ -15,15 +15,23 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
 </head>
 <body ng-app="wsib.spike">
     
-    <div ui-view wsib-layout></div>
-
-    <script src="http://www.checkman.io/please/js/Please-compressed.js"></script>
-
+    <section>
+        <header id="layout-header" ui-view="header"></header>
+        <section id="layout-content">
+            <aside id="layout-content-left" ui-view="left"></aside>
+            <main id="layout-content-main" ui-view="main"></main>
+            <aside id="layout-content-right" ui-view="right"></aside>
+        </section>
+        <footer id="layout-footer" ui-view="footer"></footer>
+    </section>
     <!-- inject:vendor:js -->
     <!-- endinject -->
+
+    <script src="http://rawgit.com/joshdmiller/angular-placeholders/master/src/txt/txt.js"></script>
     
     <!-- inject:app:js -->
     <!-- endinject -->
