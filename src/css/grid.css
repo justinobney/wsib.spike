@@ -1,3 +1,7 @@
+body{
+  min-width: 1024px
+}
+
 #layout-header {
     height: 50px;
 }
@@ -19,6 +23,12 @@
   width: 200px;
 }
 
+#layout-content-left.closed,
+#layout-content-right.closed {
+  width: 0;
+  overflow: hidden !important;
+}
+
 .wsib-panel {
     position: relative;
     overflow: hidden;
@@ -28,9 +38,12 @@
     border-bottom: solid 1px #c2c2c2;
 }
 .wsib-panel.panel-scrolled .wsib-panel-header {
-    border-bottom-color: #FFF;
     box-shadow: 0 0 5px;
 }
 .wsib-panel-content {
     overflow-y: scroll;
+}
+
+.has-panel {
+    overflow: hidden !important;
 }

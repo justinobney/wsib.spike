@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -17,17 +17,17 @@
     <![endif]-->
 
 </head>
-<body ng-app="wsib.spike">
+<body ng-app="wsib.spike" ng-controller="AppCtrl as app">
     
-    <section>
-        <header id="layout-header" ui-view="header"></header>
-        <section id="layout-content">
-            <aside id="layout-content-left" ui-view="left"></aside>
-            <main id="layout-content-main" ui-view="main"></main>
-            <aside id="layout-content-right" ui-view="right"></aside>
-        </section>
-        <footer id="layout-footer" ui-view="footer"></footer>
-    </section>
+    <div>
+        <div id="layout-header" ui-view="header"></div>
+        <div id="layout-content" ng-controller="LayoutController as layout">
+            <div id="layout-content-left" ui-view="left" ng-class="layout.state.left"></div>
+            <div id="layout-content-main" ui-view="main" ng-class="layout.state.main"></div>
+            <div id="layout-content-right" ui-view="right" ng-class="layout.state.right"></div>
+        </div>
+        <div id="layout-footer" ui-view="footer"></div>
+    </div>
     <!-- inject:vendor:js -->
     <!-- endinject -->
 

@@ -1,15 +1,33 @@
 angular
   .module('wsib.spike.layout')
-  .service('layoutManager', function() {
+  .service('layoutManager', function($rootScope, $timeout) {
     var svc = this;
 
+    svc.state = {
+      left: {
+        closed: false
+      },
+      main: {
+        closed: false
+      },
+      right: {
+        closed: false
+      }
+    };
+
     svc.init = function(){
-      svc.calculateLayout();  
+      svc.calculateLayoutSync();
       
       angular.element(window).on('resize', _.throttle(svc.calculateLayout, 50));
     }
 
-    svc.calculateLayout = function() {
+    svc.calculateLayoutSync = _calculateLayout;
+
+    svc.calculateLayout = function(){
+      $timeout(_calculateLayout, 10);
+    }
+
+    function _calculateLayout() {
       var $window = angular.element(window);
       var $header = angular.element('#layout-header')
       var $footer = angular.element('#layout-footer')
@@ -36,67 +54,14 @@ angular
         width: $window.width() - ($content_left.width() + $content_right.width()),
         left: $content_left.width()
       });
+
+      $rootScope.$broadcast('layout::resize');
     }
   })
-  .directive('wsibPanel', function(){
-    return {
-      restrict: 'E',
-      transclude: true,
-      template: '<section class="wsib-panel" ng-class="{\'panel-scrolled\': isScrolledDown}" ng-transclude></section>',
-      replace: true,
-      controller: function($scope){
-        this.setIsScrolled = function(isScrolledDown){
-          $scope.isScrolledDown = isScrolledDown;
-        }
-      },
-      link: function(scope, element, attrs){
-        var parent = element.parent();
-        
-        calculateLayout();
-        angular.element(window).on('resize', _.throttle(calculateLayout, 50));
+  .controller('LayoutController', function(layoutManager){
+    var vm = this;
 
-        function calculateLayout(){
-          element.height(parent.height());
-          element.width(parent.width());
-        }
-      }
-    }
-  })
-  .directive('wsibPanelHeader', function(){
-    return {
-      restrict: 'E',
-      transclude: true,
-      template: '<section class="wsib-panel-header" ng-transclude></section>',
-      replace: true,
-      link: function(scope, element, attrs){
-        
-      }
-    }
-  })
-  .directive('wsibPanelContent', function(){
-    return {
-      restrict: 'E',
-      transclude: true,
-      require: '^wsibPanel',
-      template: '<section class="wsib-panel-content" ng-transclude></section>',
-      replace: true,
-      link: function(scope, element, attrs, ctrl){
-        var parent = element.parent();
-        var header = parent.find('>.wsib-panel-header');
-
-        calculateLayout();
-        angular.element(window).on('resize', _.throttle(calculateLayout, 50));
-
-        function calculateLayout(){
-          setTimeout(function(){ element.height(parent.outerHeight() - header.outerHeight()); }, 30)
-        }
-
-        element.on('scroll', _.throttle(function(e){
-          ctrl.setIsScrolled(element.scrollTop() != 0)
-          scope.$evalAsync();
-        }, 100));
-      }
-    }
+    vm.state = layoutManager.state;
   })
   .run(function(layoutManager) {
     layoutManager.init();

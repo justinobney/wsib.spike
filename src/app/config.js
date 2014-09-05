@@ -15,7 +15,7 @@ angular.module('wsib.spike')
         url: '/',
         views: {
           'header@': {
-            template: 'Header'
+            template: '<button ng-click="app.toggleLeft()">Toggle Left</button>'
           },
           'left@': {
             template: '<div class="panel panel-info"><div class="panel-heading">Panel heading</div><ul class="list-group"><li ng-repeat="item in [1,2,3,4,5,6,7,8,9,10]" class="list-group-item">Cras justo odio</li></ul></div><div class="panel panel-info"><div class="panel-heading">Panel heading</div><ul class="list-group"><li ng-repeat="item in [1,2,3,4,5,6,7,8,9,10]" class="list-group-item">Cras justo odio</li></ul></div>'
